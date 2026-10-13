@@ -1,0 +1,64 @@
+package ma.youcode.model;
+
+import java.util.concurrent.atomic.AtomicLong;
+
+public class Lien {
+
+    private Long id;
+    private String offre;
+    private String urlDestination;
+    private AtomicLong clicks = new AtomicLong(0);
+    private Long publisherId;
+
+    public Lien() {
+    }
+
+    public Lien(Long id, String offre, String urlDestination,
+                Long publisherId) {
+        this.id = id;
+        this.offre = offre;
+        this.urlDestination = urlDestination;
+        this.publisherId = publisherId;
+    }
+
+    public void incrementerClicks() {
+        clicks.incrementAndGet();
+    }
+
+    public long getClicks() {
+        return clicks.get();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getOffre() {
+        return offre;
+    }
+
+    public void setOffre(String offre) {
+        this.offre = offre;
+    }
+
+    public String getUrlDestination() {
+        return urlDestination;
+    }
+
+    public void setUrlDestination(String urlDestination) {
+        this.urlDestination = urlDestination;
+    }
+
+    public Long getPublisherId() {
+        return publisherId;
+    }
+
+    public void setPublisherId(Long publisherId) {
+        this.publisherId = publisherId;
+    }
+
+}
