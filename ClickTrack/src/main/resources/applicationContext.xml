@@ -4,10 +4,9 @@
        xsi:schemaLocation="
            http://www.springframework.org/schema/beans
            https://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <!--
-       Ici on déclarera les repositories
-       et les services avec <bean> et <constructor-arg>.
-    -->
+<bean id ="publisherRepository"
+      class ="ma.youcode.repository.impl.InMemoryPublisherRepository"/>
+<bean id ="publisherService"
+    class ="ma.youcode.service.impl.PublisherServiceImp"/>
 
 </beans>
