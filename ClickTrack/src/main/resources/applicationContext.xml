@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id ="publisherRepository"
+      class ="ma.youcode.repository.impl.InMemoryPublisherRepository"/>
+<bean id ="publisherService"
+    class ="ma.youcode.service.impl.PublisherServiceImpl">
+    <constructor-arg ref="publisherRepository"/>
+</bean>
+
+ <bean id="lienService"
+          class="ma.youcode.service.impl.LienServiceImpl">
+        <constructor-arg ref="lienRepository"/>
+        <constructor-arg ref="publisherRepository"/>
+    </bean>
+        <bean id="lienRepository"
+          class="ma.youcode.repository.impl.InMemoryLienRepository"/>
+
+
+</beans>
