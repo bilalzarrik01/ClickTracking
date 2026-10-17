@@ -21,9 +21,9 @@ public class PublisherServiceImpl implements PublisherService {
     }
 
     @Override
-    public Optional<Publicher> trouveParId() {
+    public Optional<Publicher> trouveParId(Long id) {
         // TODO Auto-generated method stub
-        return publisherRepository.findById(null);
+       return publisherRepository.findById(id);
     }
 
     

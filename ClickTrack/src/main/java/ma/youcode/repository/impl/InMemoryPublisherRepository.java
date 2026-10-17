@@ -5,26 +5,35 @@ import java.util.List;
 import java.util.Optional;
 
 import ma.youcode.model.Publicher;
+import ma.youcode.model.Categorie;
 
 import ma.youcode.repository.PublisherRepository;
 
+
 public class InMemoryPublisherRepository  implements PublisherRepository{
+
     private final List<Publicher> publishers = new ArrayList<>();
 
+    public InMemoryPublisherRepository(){
+        publishers.add(new Publicher(1L, "bilal", "zarrik", "bilal@zarrik.com",Categorie.BLOGUEUR));
+                publishers.add(new Publicher(2L, "Mohammed", "Allaoui", "mohammed6@maroc.ma",Categorie.INFLUENCEUR));
+
+    }
+
     @Override
-    public synchronized List<Publicher> findAll() {
+    public  List<Publicher> findAll() {
       
-        return publishers;
+        return new ArrayList<>(publishers);
     }
 
     @Override
-    public synchronized Optional<Publicher> findById(Long id) { 
+    public  Optional<Publicher> findById(Long id) { 
 
-        return publishers.stream().filter(i->id.equals(id)).findFirst();
+        return publishers.stream().filter(i->id.equals(i.getId())).findFirst();
     }
 
     @Override
-    public synchronized void save(Publicher publicher) {
+    public void save(Publicher publicher) {
         publishers.add(publicher);
         
     }

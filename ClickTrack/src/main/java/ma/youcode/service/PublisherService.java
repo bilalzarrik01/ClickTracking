@@ -8,6 +8,6 @@ import ma.youcode.model.Publicher;
 public interface PublisherService {
 
     List<Publicher> listerPublicher();
-    Optional<Publicher> trouveParId();
+    Optional<Publicher> trouveParId(Long id);
     
 }
