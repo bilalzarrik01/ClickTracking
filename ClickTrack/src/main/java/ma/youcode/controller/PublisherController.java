@@ -4,6 +4,7 @@ import java.nio.file.OpenOption;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Flow.Publisher;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,4 +69,14 @@ public class PublisherController {
         return ResponseEntity.ok(liens);
 
     }
+    @GetMapping("/api/publishers/{id}/offres")
+    public ResponseEntity<Map<String ,Long>> affichLienParOffer(@PathVariable("id") Long id){
+        if (publisherService.trouveParId(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+            
+        }
+        Map<String , Long> stats = lienService.statistiquesParOffre(id);
+        return ResponseEntity.ok(stats);
+    }
+
 }
