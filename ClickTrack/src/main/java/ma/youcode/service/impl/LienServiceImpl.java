@@ -3,6 +3,8 @@ package ma.youcode.service.impl;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
+import java.util.Map;
 
 import ma.youcode.model.Lien;
 import ma.youcode.repository.LienRepository;
@@ -29,7 +31,6 @@ public class LienServiceImpl implements LienService {
         }
 
         Long id = sequence.incrementAndGet();
-
         Lien lien = new Lien(
                 id,
                 offre,
@@ -53,5 +54,15 @@ public class LienServiceImpl implements LienService {
 
         return lienRepository.findByPublisher(publisherId);
     }
+    @Override 
+     public Map<String, Long> statistiquesParOffre(Long publisherId){
+     List<Lien> liens =lienRepository.findByPublisher(publisherId) ;
+     System.out.println("Nombre de liens pour publisher " + publisherId + " : " + liens.size());
+
+       Map<String ,Long> stats= liens.stream().collect(Collectors.groupingBy(Lien::getOffre ,Collectors.summingLong(Lien::getClicks)));
+
+     return  stats ;
+    }
+    
 
 }
