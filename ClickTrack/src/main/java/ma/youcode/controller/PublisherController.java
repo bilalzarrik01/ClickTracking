@@ -58,4 +58,14 @@ public class PublisherController {
     }
 
 
+    @GetMapping("/api/publishers/{id}/liens")
+    public ResponseEntity<List<Lien>> affichLiensByPublisher(@PathVariable("id") Long id) {
+        if (publisherService.trouveParId(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<Lien> liens = lienService.listerPublicher(id);
+        return ResponseEntity.ok(liens);
+
+    }
 }

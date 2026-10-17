@@ -11,17 +11,17 @@ public class InMemoryLienRepository implements LienRepository {
     private final List<Lien> liens = new ArrayList<>();
 
     @Override
-    public synchronized void save(Lien lien) {
+    public  void save(Lien lien) {
         liens.add(lien);
     }
 
     @Override
-    public synchronized Optional<Lien> findById(Long id) {
-        return liens.stream().filter(i -> id.equals(id)).findFirst();
+    public  Optional<Lien> findById(Long id) {
+        return liens.stream().filter(i ->id.equals(i.getId())).findFirst();
     }
 
      @Override
-    public synchronized List<Lien> findByPublisher(Long publisherId) {
+    public  List<Lien> findByPublisher(Long publisherId) {
         return liens.stream()
                 .filter(l -> publisherId.equals(l.getPublisherId()))
                 .toList();

@@ -7,7 +7,7 @@ public class Lien {
     private Long id;
     private String offre;
     private String urlDestination;
-    private AtomicLong clicks = new AtomicLong(0);
+   private long clicks = 0;
     private Long publisherId;
 
     public Lien() {
@@ -21,12 +21,12 @@ public class Lien {
         this.publisherId = publisherId;
     }
 
-    public void incrementerClicks() {
-        clicks.incrementAndGet();
-    }
+   public synchronized void incrementerClicks() {
+    clicks++;
+}
 
-    public long getClicks() {
-        return clicks.get();
+    public synchronized long getClicks() {
+        return clicks;
     }
 
     public Long getId() {
